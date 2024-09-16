@@ -7,6 +7,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index'); // Ensure this points to your correct route file
 var studentRoutes = require('./routes/studentRoutes')
+var testRouter = require('./routes/testRoute');
 
 
 var app = express();
@@ -15,9 +16,6 @@ const PORT = process.env.PORT || 3000; // Port the server will listen on
 
 const server = http.createServer(app);
 
-
-// Routes
-app.use('/api/students', studentRoutes); 
 
 
 
@@ -34,6 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/', indexRouter); // Make sure the indexRouter is correctly defined and points to your routes
+app.use('/api/students', studentRoutes); 
+app.use('/api/test', testRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
