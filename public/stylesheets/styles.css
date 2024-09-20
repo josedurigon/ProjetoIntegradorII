@@ -1,0 +1,95 @@
+/* General Reset */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 5px;
+    padding: 5px;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    /* padding: 1em 0; */
+    margin: 5px;
+    padding: 5px;
+}
+
+h1{
+    color: white;
+}
+
+.footer-p{
+    color: white;
+}
+h2, p {
+    margin: 0;
+    color: black;
+}
+
+.hero {
+    background-image: url('gym-background.jpg'); /* Add your own background image */
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    flex-direction: column;
+}
+
+.hero h2 {
+    margin: 0;
+    font-size: 3rem;
+}
+
+.cta-button {
+    padding: 1em 2em;
+    background-color: #f00;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #c00;
+}
+
+.section {
+    padding: 3em 0;
+    text-align: center;
+}
+
+.section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.section ul li {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+}
+
+.container-sign-in{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sign-in-button{
+    color: #f4f4f4;
+    font-size:large;
+}
