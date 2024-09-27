@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index'); // Ensure this points to your correct route file
+var loginRouter = require('./routes/loginRoute');
 var studentRoutes = require('./routes/studentRoutes')
 var testRouter = require('./routes/testRoute');
 
@@ -32,8 +33,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/', indexRouter); // Make sure the indexRouter is correctly defined and points to your routes
-app.use('/api/students', studentRoutes); 
-app.use('/api/test', testRouter);
+app.use('/login', loginRouter);
+// app.use('/api/students', studentRoutes); 
+// app.use('/api/test', testRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
