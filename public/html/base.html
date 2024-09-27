@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymFit Landing Page</title>
     <link rel="stylesheet" href="/stylesheets/styles.css"> <!-- External CSS file linked here -->
-    <script type="text/javascript" src="../pics/gym.js"></script>
+    <script type="text/javascript" src="../javascripts"></script>
 </head>
 
 <body>
@@ -21,7 +21,12 @@
     <section class="hero">
         <h2>Get Stronger, Healthier, and Fitter</h2>
         <p>Join our gym today and get access to the best facilities, personal trainers, and group classes.</p>
-        <button class="cta-button">Sign Up Now</button>
+        <a href="http://localhost:3000/register">
+            <button class="cta-button" onclick="cadastro()">Sign Up Now</button>
+        </a>
+        <a href="http://localhost:3000/login">
+            <button class = "cta-button">Login</button>
+        </a>
     </section>
 
     <section class="section">
