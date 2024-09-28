@@ -7,6 +7,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index'); // Ensure this points to your correct route file
 var loginRouter = require('./routes/loginRoute');
+var relatorioRouter = require('./routes/relatorioRoute')
 var studentRoutes = require('./routes/studentRoutes')
 var testRouter = require('./routes/testRoute');
 
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.use('/', indexRouter); // Make sure the indexRouter is correctly defined and points to your routes
 app.use('/login', loginRouter);
+app.use('/relatorio', relatorioRouter)
 // app.use('/api/students', studentRoutes); 
 // app.use('/api/test', testRouter);
 
