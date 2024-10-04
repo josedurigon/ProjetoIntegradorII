@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     phone: DataTypes.STRING,
     registrationDate: DataTypes.DATE,
     weeklyHours: DataTypes.INTEGER,
-    classification: DataTypes.STRING
+    classification: DataTypes.STRING,
+    dateOfBirth: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Student',
