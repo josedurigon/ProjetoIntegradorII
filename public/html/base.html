@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo de pagina</title>
-    <script type = "text/javascript" src="../javascripts/exemplo.js"></script>
-
+    <title>GymFit Landing Page</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css"> <!-- External CSS file linked here -->
+    <script type="text/javascript" src="../javascripts"></script>
 </head>
+
 <body>
-    <H1>Exemplo de Codigo feito em Aula </H1><br>
-    <h2>by SLMM</h2>
+    <header>
+        <div class="container-sign-in">
+        
+            <h1>Welcome to GymFit</h1>
+            <a class= "sign-in-button" href="">Sign in</a>
+        </div>
+    </header>
 
-    <br>
-    <br>
-    base: <input type="number" name="valorBase" id="valorBase"><br>
-    altura: <input type="number" name="valorAltura" id="valorAltura"><br>
-    area: <input type="text" name="resultado" id="resultado"><br>
-    <button id="calcula" name="calcula" onclick="document.getElementById('resultado').value = 
-         calcularArea( 
-            document.getElementById('valorBase').value ,
-            document.getElementById('valorAltura').value 
-         );">Calcular</button>
+    <section class="hero">
+        <h2>Get Stronger, Healthier, and Fitter</h2>
+        <p>Join our gym today and get access to the best facilities, personal trainers, and group classes.</p>
+        <a href="http://localhost:3000/register">
+            <button class="cta-button" onclick="cadastro()">Sign Up Now</button>
+        </a>
+        <a href="http://localhost:3000/login">
+            <button class = "cta-button">Login</button>
+        </a>
+    </section>
 
-   <br><br>
-   Alo turma
-    <br>
-    <script src="../javascripts/funcoes.js"></script>
-    <button class="button" onclick="calcular(2,3)">Calcular</button>
+    <section class="section">
+        <h2>Why Choose GymFit?</h2>
+        <p>We offer state-of-the-art equipment, flexible membership plans, and a supportive community to help you reach your fitness goals.</p>
+        <ul>
+            <li>Modern Equipment</li>
+            <li>Personal Training</li>
+            <li>Group Fitness Classes</li>
+            <li>Flexible Memberships</li>
+        </ul>
+    </section>
 
+    <section class="section" style="background-color: #f8f8f8;">
+        <h2>Contact Us</h2>
+        <p>Call us at (555) 555-5555 or visit our gym at 123 Fitness St, Wellness City.</p>
+        <input type="text" name="name" id="name" placeholder="Enter your name">
+        <input type="email" name="email" id="email" placeholder="Enter your email">
+        <button class="cta-button">Get a Free Trial</button>
+    </section>
 
+    <footer>
+        <p>&copy; 2024 GymFit. All Rights Reserved.</p>
+    </footer>
+
+    <script src="../javascripts/gym.js"></script>
 </body>
+
 </html>
-
-
