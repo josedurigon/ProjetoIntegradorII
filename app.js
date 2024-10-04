@@ -23,19 +23,20 @@ const server = http.createServer(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug'); // Use 'ejs' if you prefer EJS, or another supported engine
+app.set('view engine', 'pug'); 
 
 
 app.use(logger('dev'));
-app.use(express.json()); // For parsing application/json
-app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
+app.use(express.json()); // Parsing application/json
+app.use(express.urlencoded({ extended: true })); 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/', indexRouter); // Make sure the indexRouter is correctly defined and points to your routes
+app.use('/', indexRouter); 
 app.use('/login', loginRouter);
 app.use('/relatorio', relatorioRouter)
+app.use('/', studentRoutes)
 // app.use('/api/students', studentRoutes); 
 // app.use('/api/test', testRouter);
 
@@ -46,7 +47,6 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
