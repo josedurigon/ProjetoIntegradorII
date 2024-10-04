@@ -1,0 +1,42 @@
+name: Deploy to Glitch
+
+on:
+  push:
+    branches:
+      - desenv
+      - main 
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Install Git
+      - name: Install Git
+        run: sudo apt-get install git
+
+      # Configure Git
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      # Add Glitch as a remote repository
+      - name: Add Glitch remote
+        run: git remote add glitch ${{ secrets.GLITCH_REPO_URL }}
+
+      # Push code to Glitch
+      - name: Deploy to Glitch
+        run: git push glitch main:master --force
+
+      # (Optional) If your Glitch project is private and requires authentication
+      - name: Authenticate Glitch (if private)
+        if: secrets.GLITCH_TOKEN != ''
+        env:
+          GLITCH_TOKEN: ${{ secrets.GLITCH_TOKEN }}
+        run: git remote set-url glitch https://$GLITCH_TOKEN@api.glitch.com/git/<your-project-name>
