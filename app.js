@@ -8,7 +8,10 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index'); // Ensure this points to your correct route file
 var loginRouter = require('./routes/loginRoute');
 var relatorioRouter = require('./routes/relatorioRoute')
-var studentRoutes = require('./routes/studentRoutes')
+//var studentRoutes = require('./routes/studentRoutes')
+const studentRoutes = require('./routes/studentRoutes'); // Adjust path if needed
+var authRoutes = require('./routes/authRoutes');
+
 var testRouter = require('./routes/testRoute');
 
 
@@ -18,7 +21,10 @@ const PORT = process.env.PORT || 3000; // Port the server will listen on
 
 const server = http.createServer(app);
 
+app.use(express.urlencoded({ extended: true })); // To handle form data
 
+app.use('/students', studentRoutes);
+app.use('/auth', authRoutes);
 
 
 // view engine setup
@@ -37,6 +43,7 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/relatorio', relatorioRouter)
 app.use('/', studentRoutes)
+
 // app.use('/api/students', studentRoutes); 
 // app.use('/api/test', testRouter);
 

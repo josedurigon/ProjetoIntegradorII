@@ -1,6 +1,5 @@
 const { Student } = require('../models');
 
-// Register a new student
 exports.registerStudent = async (req, res) => {
     try {
         const { 
@@ -12,16 +11,14 @@ exports.registerStudent = async (req, res) => {
 
             console.log(req.body)
 
-        // Check if student already exists
         const existingStudent = await Student.findOne({ where: { email } });
         if (existingStudent) {
             return res.status(400).json({ message: 'Student already registered with this email.' });
         }
 
-        // Create new student
         const newStudent = await Student.create({ 
             name, 
-            email, 
+            email,  
             phone, 
             dateOfBirth 
         });
