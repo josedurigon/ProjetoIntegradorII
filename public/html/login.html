@@ -17,6 +17,11 @@
             <input type="password" id="password" name="password" placeholder="Enter your password" required><br><br>
 
             <input type="submit" value="Login">
+            <script>
+         document.getElementById('email').addEventListener('input', function() {
+            localStorage.setItem('USER', this.value);
+        });
+            </script>
         </form>
     </div>
 </body>
