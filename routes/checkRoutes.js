@@ -1,7 +1,8 @@
 const express = require('express');
 var fs = require('fs');
 const router = express.Router();
-const Visit = require('../models/trainingsession'); // Import Visit model
+const { TrainingSession } = require('../models'); // Ensure Visit is destructured if exported this way
+const { Student } = require('../models');
 const { Op } = require('sequelize');
 
 
@@ -20,21 +21,34 @@ router.get('/', function(req, res) {
 
 });
 
-// Check-in Route
+// POST route to handle check-in
 router.post('/checkin', async (req, res) => {
-    const userId = req.body.userId; 
+    const email = req.body.email; // Get email from form submission
+    
+    console.log(email);
     try {
-        // Create a new Visit record with check-in time
-        const newVisit = await Visit.create({
-            userId,
-            checkIn: new Date(), // Current datetime
-            checkOut: null,
-        });
+        // Create a new entry in the Visits table with the current timestamp
+    //findOne({ where: { email, password } });
+        const student = await Student.findOne({where: {email:email}})
+        if (!student) {
+            return res.status(404).send('Student not found');
+        }
 
-        res.status(200).json({ message: 'Check-in successful', visit: newVisit });
+        console.log("id student: ", student.id);
+        
+        const newVisit = await TrainingSession.create({
+            student_id: student.id,   // Pass student.id as student_id
+            date: new Date(),         // Current date
+            entryTime: new Date(),    // Current timestamp for check-in
+            exitTime: null,           // Set to null for check-in
+            createdAt: new Date(),    // Optional: if your model auto-manages timestamps, you can omit createdAt
+            updatedAt: new Date()     // Optional: if your model auto-manages timestamps, you can omit updatedAt
+        });
+        // Send a success message
+        res.status(200).send('Check-in successful');
     } catch (error) {
         console.error('Error during check-in:', error);
-        res.status(500).json({ message: 'Error during check-in', error: error.message });
+        res.status(500).send('Failed to check in');
     }
 });
 

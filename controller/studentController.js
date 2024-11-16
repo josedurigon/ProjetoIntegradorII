@@ -13,7 +13,7 @@ exports.registerStudent = async (req, res) => {
 
         const existingStudent = await Student.findOne({ where: { email } });
         if (existingStudent) {
-            return res.status(400).json({ message: 'Student already registered with this email.' });
+            return res.status(400)
         }
 
         const newStudent = await Student.create({ 
@@ -22,9 +22,11 @@ exports.registerStudent = async (req, res) => {
             phone, 
             dateOfBirth 
         });
-
-        res.status(201).json({ message: 'Student registered successfully', student: newStudent });
+        
+        res.redirect('/')
+        // res.status(201).json({ message: 'Student registered successfully', student: newStudent });
     } catch (error) {
         res.status(500).json({ message: 'Error registering student', error: error.message });
     }
+
 };

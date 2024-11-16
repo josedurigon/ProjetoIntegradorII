@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   TrainingSession.init({
     student_id: DataTypes.INTEGER,
     date: DataTypes.DATE,
-    entryTime: DataTypes.TIME,
-    exitTime: DataTypes.TIME
+    entryTime: DataTypes.DATE,
+    exitTime: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'TrainingSession',
