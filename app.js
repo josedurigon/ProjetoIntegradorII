@@ -10,12 +10,11 @@ const session = require('express-session'); // Import express-session
 var indexRouter = require('./routes/index'); // Ensure this points to your correct route file
 var loginRouter = require('./routes/loginRoute');
 var relatorioRouter = require('./routes/relatorioRoute')
-//var studentRoutes = require('./routes/studentRoutes')
 const studentRoutes = require('./routes/studentRoutes'); // Adjust path if needed
 var authRoutes = require('./routes/authRoutes');
 const checkin = require('./routes/checkRoutes')
-var testRouter = require('./routes/testRoute');
-
+const checkout = require('./routes/checkoutRoutes')
+const dashboard = require ('./routes/dashboardRoutes')
 
 var app = express();
 
@@ -54,10 +53,13 @@ app.use('/login', loginRouter);
 app.use('/relatorio', relatorioRouter);
 app.use('/', studentRoutes);
 app.use('/checkin', checkin)
-
-
+app.use('/checkout', checkout)
 app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/html', 'home.html'));
+});
+
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/html', 'dashboard.html'));
 });
 
 // app.get('/checkin', (req, res) => {

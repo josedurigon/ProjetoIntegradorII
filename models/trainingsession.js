@@ -17,7 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     student_id: DataTypes.INTEGER,
     date: DataTypes.DATE,
     entryTime: DataTypes.DATE,
-    exitTime: DataTypes.DATE
+    exitTime: DataTypes.DATE,
+    createdAt: DataTypes.DATEONLY, // DATEONLY stores only the date (day, month, year)
+    updatedAt: DataTypes.DATEONLY
   }, {
     sequelize,
     modelName: 'TrainingSession',

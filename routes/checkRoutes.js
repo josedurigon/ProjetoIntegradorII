@@ -5,6 +5,8 @@ const { TrainingSession } = require('../models'); // Ensure Visit is destructure
 const { Student } = require('../models');
 const { Op } = require('sequelize');
 
+let erroCheckinDuplo = false;
+
 
 router.get('/', function(req, res) {
     fs.readFile('./public/html/checkin.html', function (err, html) {
@@ -23,13 +25,29 @@ router.get('/', function(req, res) {
 
 // POST route to handle check-in
 router.post('/checkin', async (req, res) => {
-    const email = req.body.email; // Get email from form submission
+    var email = req.body.email; // Get email from form submission
     
     console.log(email);
     try {
         // Create a new entry in the Visits table with the current timestamp
     //findOne({ where: { email, password } });
+        const today = new Date().toISOString().split('T')[0]; // e.g., '2024-11-16'
         const student = await Student.findOne({where: {email:email}})
+
+        const treino = await TrainingSession.findOne({
+            where: {student_id: student.id, createdAt: {
+                [Op.eq]: today
+            }}
+        })
+
+        if (treino != null){
+            console.log("nao pode fazer checkin duas vezes no dia")
+            erroCheckinDuplo = true;
+            throw new Error("You can't make a checkin in two times a day!!!")
+        }
+
+        console.log("\n\n\n======treino: ",treino)
+
         if (!student) {
             return res.status(404).send('Student not found');
         }
@@ -44,41 +62,66 @@ router.post('/checkin', async (req, res) => {
             createdAt: new Date(),    // Optional: if your model auto-manages timestamps, you can omit createdAt
             updatedAt: new Date()     // Optional: if your model auto-manages timestamps, you can omit updatedAt
         });
+
+        const success= true;
+        
+        if (success == true){
+            res.send(`
+                <script>
+                    alert("Operation successful!");
+                    window.location.href = "/home"; 
+                </script>
+            `);
+        }
+        else{
+            res.send(`
+                <script>
+                    alert("Operation failed.");
+                    window.location.href = "/home"; 
+                </script>
+            `);
+        }
         // Send a success message
-        res.status(200).send('Check-in successful');
+        // res.status(200).send('Check-in successful');
     } catch (error) {
         console.error('Error during check-in:', error);
-        res.status(500).send('Failed to check in');
+        if (erroCheckinDuplo == true){
+            res.send(`
+                <script>
+                    alert("Can't make duple checking in a day");
+                    window.location.href = "/home"; 
+                </script>
+            `);
+        }
     }
 });
 
 // Check-out Route
-router.post('/checkout', async (req, res) => {
-    const userId = req.body.userId; // Assuming userId is sent in the request body
+// router.post('/checkout', async (req, res) => {
+//     const email = req.body.email; // Get email from form submission
+    
+//     console.log(email);
+//     try {
+//         // Create a new entry in the Visits table with the current timestamp
+//     //findOne({ where: { email, password } });
+//         const student = await Student.findOne({where: {email:email}})
+//         if (!student) {
+//             return res.status(404).send('Student not found');
+//         }
 
-    try {
-        // Find the latest Visit record with a null checkOut field for the user
-        const visit = await Visit.findOne({
-            where: {
-                userId,
-                checkOut: { [Op.is]: null } // Only find open visits
-            },
-            order: [['checkIn', 'DESC']],
-        });
-
-        if (!visit) {
-            return res.status(400).json({ message: 'No active check-in found for checkout' });
-        }
-
-        // Update the record with the current check-out time
-        visit.checkOut = new Date(); // Current datetime
-        await visit.save();
-
-        res.status(200).json({ message: 'Check-out successful', visit });
-    } catch (error) {
-        console.error('Error during check-out:', error);
-        res.status(500).json({ message: 'Error during check-out', error: error.message });
-    }
-});
+//         console.log("id student: ", student.id);
+        
+//         const newVisit = await TrainingSession.update(
+//             {exitTime: new Date()},
+//             {where  : {student_id: student.id}}   // Pass student.id as student_id
+            
+//         );
+//         // Send a success message
+//         res.status(200).send('Check-in successful');
+//     } catch (error) {
+//         console.error('Error during check-in:', error);
+//         res.status(500).send('Failed to check in');
+//     }
+// });
 
 module.exports = router;

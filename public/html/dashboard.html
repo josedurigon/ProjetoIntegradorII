@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymFit Home</title>
     <link rel="stylesheet" href="/stylesheets/stylesHome.css"> <!-- Link to your CSS file -->
-    <script src="/javascripts/gym.js"></script> <!-- Link to your JavaScript file if needed -->
 </head>
 <script>
     function limpaLocalStorage(){
@@ -16,23 +15,18 @@
     <header>
         <div class="container-sign-in">
             <h1>Welcome Back to GymFit</h1>
-            <a class="sign-in-button" onclick="limpaLocalStorage()" href="/">Logout</a>
         </div>
     </header>
 
     <section class="hero">
-        <h2>Your Fitness Journey Starts Here</h2>
-        <p>We’re excited to help you achieve your goals!</p>
-        <a href="/checkin">
+        <h2>Dashboard</h2>
+        <p>Check the students progress!</p>
+        <a href="/dashboard">
             <button class="cta-button">Check-in</button>
         </a>
-        <a href="/checkout">
-            <button class="cta-button">Check-out</button>
-        </a>
-        <a href="/dashboard">
-            <button class="cta-button">Dashboard</button>
-        </a>
-        
+    </section>
+    <section>
+        <div class="container-dashboard"></div>
     </section>
 
     <footer>
