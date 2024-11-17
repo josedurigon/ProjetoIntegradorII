@@ -15,7 +15,13 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
         
-        session.Session.name = user
+    
+        req.session.user = {
+            email: user.email,
+            role: user.role,
+        };
+        console.log("Session data after login:", req.session.user);  // Debug check
+
         res.redirect('/home')
         
 //        res.status(200).json({ message: 'Login successful' });

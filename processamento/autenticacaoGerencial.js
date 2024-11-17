@@ -1,2 +1,6 @@
 const { Op } = require('sequelize');
-const { Student } = require('../models'); // Adjust path as needed
+const { Logins } = require('../models'); // Adjust path as needed
+
+async function checkRole(params) {
+    
+}
