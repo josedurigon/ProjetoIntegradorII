@@ -31,15 +31,22 @@ router.post('/checkin', async (req, res) => {
     try {
         // Create a new entry in the Visits table with the current timestamp
     //findOne({ where: { email, password } });
-        const today = new Date().toISOString().split('T')[0]; // e.g., '2024-11-16'
-        const student = await Student.findOne({where: {email:email}})
+        // const today = new Date().toISOString().split('T')[0]; // e.g., '2024-11-16'
+        const today = new Date().toLocaleString('en-CA', { timeZone: 'America/Sao_Paulo' });
+        const todayDateString = today.split(',')[0]; // Extracts just the date part as 'YYYY-MM-DD'
+        
+        console.log(todayDateString); // Should output 'YYYY-MM-DD' in Brazilian local time
+
+                    const student = await Student.findOne({where: {email:email}})
 
         const treino = await TrainingSession.findOne({
             where: {student_id: student.id, createdAt: {
-                [Op.eq]: today
+                [Op.eq]: todayDateString
             }}
         })
 
+        console.log("treino -> ", treino)
+        console.log(today)
         if (treino != null){
             console.log("nao pode fazer checkin duas vezes no dia")
             erroCheckinDuplo = true;

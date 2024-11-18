@@ -1,7 +1,8 @@
 const { Op } = require('sequelize');
 const { TrainingSession, Student } = require('../models'); // Adjust path as needed
-let classification = require('../enums');
 const Classification = require('../enums/classificationENUM');
+
+
 
 async function getWeeklyHours() {
     const oneWeekAgo = new Date();
@@ -58,3 +59,8 @@ function classifyStudents(studentHours) {
 
     return classifications;
 }
+
+module.exports = {
+    getWeeklyHours,
+    classifyStudents
+};

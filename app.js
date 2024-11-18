@@ -65,9 +65,11 @@ app.use('/checkout', checkout)
 
 app.get('/home', homeRouter);
 
-app.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/html', 'dashboard.html'));
-});
+app.get('/dashboard', dashboard)
+
+// app.get('/dashboard', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public/html', 'dashboard.html'));
+// });
 
 // app.get('/checkin', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'public/html', 'checkin.html'));

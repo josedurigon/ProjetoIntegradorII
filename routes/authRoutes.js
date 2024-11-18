@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session')
 const router = express.Router();
 const { Login } = require('../models'); // Import Login model from the models index
+const {Student} = require ('../models')
 
 // Define the login route here
 router.post('/login', async (req, res) => {
@@ -15,13 +16,21 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
         
+        const student = await Student.findOne({
+            where : {email}
+        })
     
+
         req.session.user = {
             email: user.email,
             role: user.role,
         };
-        console.log("Session data after login:", req.session.user);  // Debug check
 
+        req.session.student ={
+            student_id: student.id
+        }
+        console.log("Session data after login:", req.session.user);  // Debug check
+        console.log("Session student ->", req.session.student)
         res.redirect('/home')
         
 //        res.status(200).json({ message: 'Login successful' });

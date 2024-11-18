@@ -50,7 +50,7 @@ router.get('/home', function(req, res) {
 
     // Construct the path to the HTML file
     const filePath =  `./public/html/${htmlFileName}.html`;
-
+    console.log("Role de usuario",req.session.user.role)
     // Read and send the correct HTML file
     fs.readFile(filePath, function (err, html) {
         if (err) {
