@@ -1,3 +1,8 @@
 
 npx sequelize-cli model:generate --name Student --attributes name:string,email:string,phone:string,registrationDate:date,weeklyHours:integer,classification:string
 npx sequelize-cli db:migrate
+
+
+
+PS C:\Users\Josed\Github\ProjetoIntegradorII> npx sequelize-cli migration:generate --name add-column-login-role
+nps sequelize-cli db:migrate
