@@ -65,7 +65,8 @@ app.use('/checkout', checkout)
 
 app.get('/home', homeRouter);
 
-app.get('/dashboard', dashboard)
+app.get('/dashboard', dashboard);
+// app.get('dashboard/progress', dashboard);
 
 // app.get('/dashboard', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'public/html', 'dashboard.html'));

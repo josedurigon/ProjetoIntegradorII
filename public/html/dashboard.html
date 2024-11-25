@@ -22,12 +22,14 @@
         <h2>Dashboard</h2>
         <p>Check the students progress!</p>
         <a href="/dashboard">
-            <button class="cta-button">Check-in</button>
+            <button class="cta-button">Progress</button>
         </a>
     </section>
     <section>
-        <div class="container-dashboard"></div>
-    </section>
+        <h2>All students progress</h2><br>
+        <div class="container-dashboard">
+            {{progressTable}}
+        </div>
 
     <footer>
         <p>&copy; 2024 GymFit. All Rights Reserved.</p>
