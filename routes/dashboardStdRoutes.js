@@ -36,7 +36,7 @@ router.get('/dashboardStd', async function (req, res) {
         console.log("students progress: ",progressData);
 
         // Read the dashboard HTML file only once
-        const dashboardPath = path.join(__dirname, '../public/html/dashboard.html');
+        const dashboardPath = path.join(__dirname, '../public/html/dashboardStd.html');
         fs.readFile(dashboardPath, 'utf8', (err, html) => {
             if (err) {
                 console.error("Error reading HTML file:", err);
