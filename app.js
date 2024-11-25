@@ -10,13 +10,14 @@ const {Op} = require('sequelize')
 
 var indexRouter = require('./routes/index'); // Ensure this points to your correct route file
 var loginRouter = require('./routes/loginRoute');
-var relatorioRouter = require('./routes/relatorioRoute')
+var relatorioRouter = require('./routes/relatorioRoute');
 const studentRoutes = require('./routes/studentRoutes'); // Adjust path if needed
 var authRoutes = require('./routes/authRoutes');
-const checkin = require('./routes/checkRoutes')
-const checkout = require('./routes/checkoutRoutes')
-const dashboard = require ('./routes/dashboardRoutes')
-const homeRouter = require('./routes/homeRoute')
+const checkin = require('./routes/checkRoutes');
+const checkout = require('./routes/checkoutRoutes');
+const dashboard = require ('./routes/dashboardRoutes');
+const dashboardStd = require('./routes/dashboardStdRoutes');
+const homeRouter = require('./routes/homeRoute');
 
 
 var app = express();
@@ -57,24 +58,9 @@ app.use('/relatorio', relatorioRouter);
 app.use('/', studentRoutes);
 app.use('/checkin', checkin)
 app.use('/checkout', checkout)
-
-// app.get('/home', (req, res) => {
-//   console.log("App data");  // Debug check
-//   res.sendFile(path.join(__dirname, 'public/html', 'homeAdm.html'));
-// });
-
 app.get('/home', homeRouter);
-
 app.get('/dashboard', dashboard);
-// app.get('dashboard/progress', dashboard);
-
-// app.get('/dashboard', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'public/html', 'dashboard.html'));
-// });
-
-// app.get('/checkin', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'public/html', 'checkin.html'));
-// });
+app.get('/dashboardStd', dashboardStd);
 
 
 // catch 404 and forward to error handler

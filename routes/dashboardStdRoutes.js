@@ -8,7 +8,7 @@ const { Student } = require('../models');
 const { table } = require('console');
 
 
-router.get('/dashboard', async function (req, res) {
+router.get('/dashboardStd', async function (req, res) {
     // Redirect if not logged in
     if (!req.session.user) {
         return res.redirect('/login');
@@ -20,20 +20,17 @@ router.get('/dashboard', async function (req, res) {
         console.log("=======================", req.session.user)
         console.log("=======================", req.session.student)
 
-        //req.session.student
-//req.session.user
 
-        const sessions = await TrainingSession.findAll();
-        console.log(sessions);
 
-        // Extract unique student IDs from sessions
-        const studentIds = [...new Set(sessions.map(session => session.student_id))];
-        console.log("students ids: ",studentIds);
+
 
 
         const progressData = await TrainingSession.sequelize.query(
-            `SELECT * FROM total_training_hours_per_week`,
-            { type: TrainingSession.sequelize.QueryTypes.SELECT }
+            "SELECT * FROM total_training_hours_per_week WHERE student_id = :studentId", 
+            {
+                replacements: { studentId: req.session.student.student_id }, 
+                type: TrainingSession.sequelize.QueryTypes.SELECT
+            }
         );
 
         console.log("students progress: ",progressData);
@@ -59,7 +56,10 @@ router.get('/dashboard', async function (req, res) {
                 </tr>
             `).join('');
    
-            // Inject the table rows into the HTML
+            // const rowTotalHours = progressData.map( row =>
+
+            // ) 
+            // // Inject the table rows into the HTML
                 const tableHTML = `
                 <table border="1" style="width: 100%; text-align: left;">
                     <thead>
