@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title GymFit Dashboard
+    link(rel="stylesheet", href="/stylesheets/stylesHome.css")
+  body
+    header
+      .container-sign-in
+        h1 Welcome Back to GymFit
+    section.hero
+      h2 Dashboard
+      p Check the students' progress!
+      a(href="/checkin") 
+        button.cta-button Check-in
+
+    section
+      h3 Training Sessions Report
+      table
+        thead
+          tr
+            th Student Name
+            th Date
+            th Entry Time
+            th Exit Time
+        tbody
+          each session in sessions
+            - const student = studentMap[session.student_id]
+            tr
+              td= student ? student.name : 'Unknown'
+              td= session.date.toISOString().split('T')[0] 
+              td= session.entryTime.toISOString().split('T')[1] 
+              td= session.exitTime ? session.exitTime.toISOString().split('T')[1] : 'N/A' 
+
+    footer
+      p &copy; 2024 GymFit. All Rights Reserved.
