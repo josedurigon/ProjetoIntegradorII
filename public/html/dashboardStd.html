@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymFit Home</title>
+    <link rel="stylesheet" href="/stylesheets/stylesHome.css"> <!-- Link to your CSS file -->
+</head>
+<script>
+    function limpaLocalStorage(){
+        localStorage.removeItem('USER')
+    }
+</script>
+<body>
+    <header>
+        <div class="container-sign-in">
+            <h1>Welcome Back to GymFit</h1>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>Dashboard</h2>
+        <p>Check your own progress!</p>
+        <!-- <a href="/dashboardStd">
+            <button class="cta-button">Progress</button>
+        </a> -->
+    </section>
+    <section>
+        <h2>This is your progress</h2><br>
+        <div class="container-dashboard">
+            {{progressTable}}
+        </div>
+
+    <footer>
+        <p>&copy; 2024 GymFit. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymFit Landing Page</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css"> <!-- External CSS file linked here -->
+    <script type="text/javascript" src="../javascripts"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container-sign-in">
+            <h1>Welcome Back to GymFit</h1>
+            <a class="sign-in-button" onclick="limpaLocalStorage()" href="/">Logout</a>
+        </div>
+        <style>
+            
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                padding: 50px;
+            }
+            #clock {
+                font-size: 48px;
+                font-weight: bold;
+            }
+            footer {
+            padding: 10px;
+            margin-top: 30%;
+            text-align: center;
+            }
+            button{
+                margin-top: 10px;
+            }
+
+        </style>
+    </header>
+
+    <section>
+        <div>
+            <h3>Registrar checkin</h3>
+            <div id="clock"></div>
+
+            <script>
+                function updateClock() {
+                    const now = new Date();
+                    const hours = String(now.getHours()).padStart(2, '0');
+                    const minutes = String(now.getMinutes()).padStart(2, '0');
+                    const seconds = String(now.getSeconds()).padStart(2, '0');
+                    const timeString = `${hours}:${minutes}:${seconds}`;
+                    document.getElementById('clock').textContent = timeString;
+                }
+        
+                // Update the clock every second
+                setInterval(updateClock, 1000);
+        
+                // Initial call to display the time immediately
+                updateClock();
+            </script>
+            <form action="/checkin/checkin" method="POST">
+                <input type="hidden" name="email" id="emailField"> 
+                <button type="submit">Registrar entrada</button>
+            </form>
+        </div>
+    </section>
+
+
+<style>
+    .footer{
+        color: aliceblue;
+    }
+</style>
+<script>
+    // Fill in the email field with the user's email from localStorage
+    document.getElementById('emailField').value = localStorage.getItem('USER');
+
+    function limpaLocalStorage() {
+        localStorage.clear();
+    }
+</script>
+
+    <footer>
+        <p class="footer">&copy; 2024 GymFit. All Rights Reserved.</p>
+    </footer>
+
+
+</body>
+
+</html>

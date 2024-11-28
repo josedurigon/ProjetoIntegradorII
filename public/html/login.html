@@ -8,8 +8,8 @@
 </head>
 <body>
     <div class="login-container">
-        <h2>Login</h2>
-        <form action="/login" method="POST"> <!-- Adjust the action URL to your backend login endpoint -->
+        <h2>Login</h2>        
+        <form action="/auth/login" method="POST"> <!-- Adjust the action URL to your backend login endpoint -->
             <label for="email">Email Address:</label>
             <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
 
@@ -17,6 +17,11 @@
             <input type="password" id="password" name="password" placeholder="Enter your password" required><br><br>
 
             <input type="submit" value="Login">
+            <script>
+         document.getElementById('email').addEventListener('input', function() {
+            localStorage.setItem('USER', this.value);
+        });
+            </script>
         </form>
     </div>
 </body>

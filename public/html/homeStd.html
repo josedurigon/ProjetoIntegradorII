@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymFit Home</title>
+    <link rel="stylesheet" href="/stylesheets/stylesHome.css"> <!-- Link to your CSS file -->
+    <script src="/javascripts/gym.js"></script> <!-- Link to your JavaScript file if needed -->
+</head>
+<script>
+    function limpaLocalStorage(){
+        localStorage.removeItem('USER')
+    }
+</script>
+<body>
+    <header>
+        <div class="container-sign-in">
+            <h1>Welcome Back to GymFit</h1>
+            <a class="sign-in-button" onclick="limpaLocalStorage()" href="/">Logout</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>Your Fitness Journey Starts Here</h2>
+        <p>We’re excited to help you achieve your goals!</p>
+        <a href="/checkin">
+            <button class="cta-button">Check-in</button>
+        </a>
+        <a href="/checkout">
+            <button class="cta-button">Check-out</button>
+        </a>
+        <a id = "botao-dashboard" href="/dashboardStd">
+            <button class="cta-button">Dashboard</button>
+        </a>
+        
+    </section>
+
+    <footer>
+        <p>&copy; 2024 GymFit. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
