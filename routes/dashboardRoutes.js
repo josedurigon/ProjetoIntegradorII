@@ -15,13 +15,12 @@ router.get('/dashboard', async function (req, res) {
     }
 
     try {
-        // Fetch all training sessions
         
         console.log("=======================", req.session.user)
         console.log("=======================", req.session.student)
 
         //req.session.student
-//req.session.user
+        //req.session.user
 
         const sessions = await TrainingSession.findAll();
         console.log(sessions);
@@ -38,7 +37,6 @@ router.get('/dashboard', async function (req, res) {
 
         console.log("students progress: ",progressData);
 
-        // Read the dashboard HTML file only once
         const dashboardPath = path.join(__dirname, '../public/html/dashboard.html');
         fs.readFile(dashboardPath, 'utf8', (err, html) => {
             if (err) {
@@ -59,7 +57,6 @@ router.get('/dashboard', async function (req, res) {
                 </tr>
             `).join('');
    
-            // Inject the table rows into the HTML
                 const tableHTML = `
                 <table border="1" style="width: 100%; text-align: left;">
                     <thead>
@@ -77,7 +74,6 @@ router.get('/dashboard', async function (req, res) {
                 </table>
             `;
 
-            // Replace placeholders in the HTML
             html = html.replace("{{totalSessions}}", progressData.length || 0);
             html = html.replace("{{progressTable}}", tableHTML);
 

@@ -11,6 +11,7 @@ router.post('/login', async (req, res) => {
     try {
         // Query the database for the user
         const user = await Login.findOne({ where: { email, password } });
+        console.log("User --->", user)
         if (!user) {
 
             return res.status(400).json({ message: 'Invalid email or password' });

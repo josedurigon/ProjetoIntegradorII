@@ -149,6 +149,16 @@ footer p {
     margin: 0;
 }
 
+#manager-container{
+    background-color: black;
+    margin-right: 90%;
+}
+
+#manager-header{
+    color: red;
+    font-size: larger;
+}
+
 /* Responsive Styling */
 @media (max-width: 768px) {
     .hero h2 {
